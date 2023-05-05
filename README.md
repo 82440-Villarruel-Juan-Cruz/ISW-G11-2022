@@ -2,9 +2,6 @@
 ## Grupo 11 - 4k4 - 2023
 Repositorio de los materiales del cursado y estudio de la materia Ingenieria  y Calidad de Software (ISW) de la Carrera Ingenieria en Sistemas de Información de la FRC UTN
 
-### Items de configuración 
-## Diseño del Repositorio
-***Ingeniería_de_software_2021-Grupo_6***
 Estructura de directorios del repositorio:
 - Material de estudio
 	- Alumnos
