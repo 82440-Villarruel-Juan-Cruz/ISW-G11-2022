@@ -1,0 +1,1 @@
+El entregable de este TP se constituye en el hecho de que el repositorio sea público, la implementación de estructura de carpetas propuesta en el README.md y los ítems de configuración en sus correspondientes ubicaciones.
