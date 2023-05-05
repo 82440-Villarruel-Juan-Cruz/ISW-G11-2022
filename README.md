@@ -24,7 +24,7 @@ Estructura de directorios del repositorio:
 	- TP 4
 	- TP 6
 	    - ISW-G11-2023-Tp-6
-	      - Comentarios: Dentro de este directorio se encuentra la implementación de la User Story solicitada en el TP 6         
+	      - Comentarios: Dentro de este directorio se encuentra la implementación de la User Story solicitada en el TP 6, sigue los lineamientos del documento de estilo dentro del directorio TP 6         
 
 ### Regla de nombrado de ítems de configuración 
 | Item de Configuración     | Regla de Nombrado | Ubicación en repositorio     |
@@ -35,7 +35,7 @@ Estructura de directorios del repositorio:
 |    Filminas de clases teóricas   | \<NombreFilmina\>.\<ExtensionDocumento\>  | https://github.com/82440-Villarruel-Juan-Cruz/ISW-G11-2023/tree/main/Material%20de%20Estudio/Catedra/Teorico/Filminas    |
 |    Bibliografía de estudio  | \<TipoBibliografia\> - \<NombreBibliografia\>.\<ExtensionDocumento\>  | https://github.com/82440-Villarruel-Juan-Cruz/ISW-G11-2023/tree/main/Material%20de%20Estudio/Catedra/Teorico/Bibliografia   |
 |    Recursos complementarios de estudio y consulta  | \<NombreRecurso\>.\<ExtensionDocumento\>  | https://github.com/82440-Villarruel-Juan-Cruz/ISW-G11-2023/tree/main/Material%20de%20Estudio/Catedra/Teorico   |
-|    Trabajos Prácticos Entregables  | tp\<NumeroTP\>.\<ExtensionDocumento\>  | https://github.com/82440-Villarruel-Juan-Cruz/ISW-G11-2023/tree/main/Trabajos%20Practicos   |
+|    Trabajos Prácticos Entregables  | ISW-G11-2023-TP\<NumeroTP\>.\<ExtensionDocumento\>  | https://github.com/82440-Villarruel-Juan-Cruz/ISW-G11-2023/tree/main/Trabajos%20Practicos   |
 
 
 ### Criterio para la creación de líneas base
