@@ -90,8 +90,11 @@ export class PedidoComponent implements OnInit {
     else return false;
   }
 
-  validateSize() {
-  
+  validateSize(event:any):void {
+    const file:File = event.target.files[0];
+    if (file.size > 5000000) // Validar si el tamaño es mayor a 5MB (en bytes)
+      // Mostrar mensaje de error o deshabilitar el botón de carga
+      return;
   }
   
 
