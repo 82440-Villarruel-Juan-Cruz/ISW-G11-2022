@@ -37,10 +37,8 @@
 </div>
 </div>
 <hr>
-<div class="navigation row justify-content-between">
-    <button type="button" class="btn btn-primary col-3" (click)="atras()">Atras</button>
-    <button type="button" [disabled]="FormRegistroEnvioHorario.invalid" class="btn btn-primary col-3" (click)="continuar()">Continuar</button>
+<div class="navigation  justify-content-center">
+    <button type="button" style="float:left;" class="btn btn-primary col-3" (click)="atras()">Atras</button>
+    <button type="button"  style="float:right;"[disabled]="estadoForm()" class="btn btn-primary " (click)="continuar()">Continuar</button>
 </div>
 </form> 
-
-

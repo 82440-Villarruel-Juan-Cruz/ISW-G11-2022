@@ -9,6 +9,9 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 export class FormaDeEnvioComponent implements OnInit {
 
   public FormRegistroEnvioHorario!: FormGroup;
+  habilitar = false;
+  formaEnvio = "";
+  submitted = false;
 
   constructor( private formBuilder: FormBuilder) { }
 
@@ -20,10 +23,8 @@ export class FormaDeEnvioComponent implements OnInit {
       FechaRecepcion:  new FormControl('',[Validators.required, Validators.pattern('[0-9]{1,2}[-/][0-9]{1,2}[-/][0-9]{4}')]),
       HoraRecepcion:  new FormControl('',[Validators.required, Validators.pattern('([0-1]?[0-9]|2[0-3]):[0-5][0-9]')]),
     })
-  console.log("A")
   }
-  submitted = false;
-
+ 
   validezCampo(campo:string,form:FormGroup){
     if( (form.controls[campo].touched || this.submitted)
           && form.controls[campo].errors)
@@ -31,9 +32,11 @@ export class FormaDeEnvioComponent implements OnInit {
 
     else return '';
   }
-  formaEnvio = "";
+
   onSelected2(value:string): void{
     this.formaEnvio = value;
+    if (value == '0') this.habilitar = true;
+    
   }
 
   errorDePatron(campo:string,form:FormGroup){
@@ -44,6 +47,7 @@ export class FormaDeEnvioComponent implements OnInit {
 
     else return false;
   }
+
   errorDeRequerido(campo:string,form:FormGroup){
     if( (form.controls[campo].touched || this.submitted)
           && form.controls[campo].hasError('required'))
@@ -51,16 +55,23 @@ export class FormaDeEnvioComponent implements OnInit {
 
     else return false;
   }
+    
+  estadoForm()
+  {
+    if(this.formaEnvio == '0')return false;
+    else if (this.formaEnvio == '1') return this.FormRegistroEnvioHorario.invalid;
+    else return true;
+  }
 
-  continuar(){
+ continuar(){
         if(this.formaEnvio == "0")this.metodoenvio.emit("Lo Antes Posible")
         if(this.formaEnvio == "1")this.metodoenvio.emit("Fecha y Hora Especifica")
         this.estado.emit('F')
 
   }
-    
+  
   atras(){
-    this.estado.emit('E')
+    this.estado.emit('P')
   }
  
 }

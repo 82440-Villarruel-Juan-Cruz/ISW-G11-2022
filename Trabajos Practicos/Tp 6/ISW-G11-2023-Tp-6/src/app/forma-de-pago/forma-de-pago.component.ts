@@ -16,27 +16,28 @@ export class FormaDePagoComponent implements OnInit {
   public FormRegistroPagoTarjeta!: FormGroup;
   public FormRegistroPaso!: FormGroup;
 
-
+  metodoPago = "";
   submitted = false;
+  montoEnvio = 100.00;
+  distanciaEntreDomicilios = 20;
+  precioXkilomentro = 5;
+  precioProducto = 150;
   
   @Output() estado = new EventEmitter<string>();
   @Output() metodopago = new EventEmitter<string>();
   constructor( private formBuilder: FormBuilder) { }
 
-  montoEnvio = 100.00;
-  distanciaEntreDomicilios = 20;
-  precioXkilomentro = 5;
-  precioProducto = 150;
 
   calculo():number {
     return this.distanciaEntreDomicilios * this.precioXkilomentro;
   }
+
   total():number{
     return this.calculo() + this.precioProducto;
   }
 
   atras (){
-
+    this.estado.emit('I')
   }
 
   continuar(){
@@ -72,14 +73,9 @@ export class FormaDePagoComponent implements OnInit {
 
   }
 
-  metodoPago = "";
-
-
   onSelected(value:string): void{
     this.metodoPago = value;
   }
-
-  
 
   validezCampo(campo:string,form:FormGroup){
     if( (form.controls[campo].touched || this.submitted)
@@ -89,7 +85,6 @@ export class FormaDePagoComponent implements OnInit {
     else return '';
   }
 
-
   errorDePatron(campo:string,form:FormGroup){
     
     if( (form.controls[campo].touched || this.submitted)
@@ -98,6 +93,7 @@ export class FormaDePagoComponent implements OnInit {
 
     else return false;
   }
+
   errorDeRequerido(campo:string,form:FormGroup){
     if( (form.controls[campo].touched || this.submitted)
           && form.controls[campo].hasError('required'))
@@ -143,6 +139,7 @@ export class FormaDePagoComponent implements OnInit {
         return false;
     }
 }
+
   luhn(value:string) {
     // Accept only digits, dashes or spaces
     if (/[^0-9-\s]+/.test(value)) return false;

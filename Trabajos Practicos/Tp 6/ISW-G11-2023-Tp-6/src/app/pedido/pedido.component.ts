@@ -12,15 +12,18 @@ import { Direccion } from '../models/Direccion';
 export class PedidoComponent implements OnInit {
 
   submitted = false;
+  boolsizefoto = false;
   public FormRegistroPedido!: FormGroup;
-  
+  direccionEntrega = new Direccion();
+  direccionComercio = new Direccion();
+
   @Output() estado = new EventEmitter<string>();
   @Output() direccionCom = new EventEmitter<Direccion>()
   @Output() direccionEnt = new EventEmitter<Direccion>()
+
   constructor(private formBuilder: FormBuilder) { }
   
   ngOnInit(): void {
-    console.log("A")
     this.FormRegistroPedido = this.formBuilder.group({
       Descripcion:new FormControl('',[Validators.required,Validators.pattern('[A-Z, a-z]{4,50}')]),
       CalleComercio: new FormControl('', 
@@ -38,12 +41,10 @@ export class PedidoComponent implements OnInit {
       [Validators.required,
         Validators.pattern('[0-9]{1,5}')]),
     CiudadEntrega: new FormControl(true, [Validators.required]),
-    ReferenciaEntrega: new FormControl('', [Validators.pattern('[A-Z, a-z, 0-9]{1,100}')])
+    ReferenciaEntrega: new FormControl('', [Validators.pattern('[A-Z, a-z, 0-9]{1,100}')]),
     });
   }
-
-  direccionEntrega = new Direccion();
-  direccionComercio = new Direccion();
+  
   continuar(){
     if(!this.FormRegistroPedido.invalid){
       this.direccionEntrega.Calle = this.FormRegistroPedido.value.CalleEntrega;
@@ -65,9 +66,8 @@ export class PedidoComponent implements OnInit {
    
     }  this.submitted = true;
 
-  }
-  
-  atras(){}
+  } 
+
   validezCampo(campo:string){
     if( (this.FormRegistroPedido.controls[campo].touched || this.submitted)
           && this.FormRegistroPedido.controls[campo].errors)
@@ -75,6 +75,7 @@ export class PedidoComponent implements OnInit {
 
     else return '';
   }
+
   errorDePatron(campo:string){
     if( (this.FormRegistroPedido.controls[campo].touched || this.submitted)
           && this.FormRegistroPedido.controls[campo].hasError('pattern'))
@@ -82,6 +83,7 @@ export class PedidoComponent implements OnInit {
 
     else return false;
   }
+
   errorDeRequerido(campo:string){
     if( (this.FormRegistroPedido.controls[campo].touched || this.submitted)
           && this.FormRegistroPedido.controls[campo].hasError('required'))
@@ -92,11 +94,20 @@ export class PedidoComponent implements OnInit {
 
   validateSize(event:any):void {
     const file:File = event.target.files[0];
-    if (file.size > 5000000) // Validar si el tamaño es mayor a 5MB (en bytes)
-      // Mostrar mensaje de error o deshabilitar el botón de carga
-      return;
+    if (file.size > 5000000) {// Validar si el tamaño es mayor a 5MB (en bytes)
+      this.boolsizefoto = true;
+      event.currentTarget.classList.add('is-invalid')
+    }
+    else{
+      this.boolsizefoto = false;
+      event.currentTarget.classList.remove('is-invalid')
+
+    }
   }
   
+  validateForm(){
+    if(!this.boolsizefoto && this.FormRegistroPedido.valid)return false; 
+    else return true
+  }
 
-  
 }

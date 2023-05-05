@@ -1,8 +1,8 @@
 <div>
-    <p>El monto a pagar por el envio es  ${{montoEnvio}}</p>
-    <p>La distancia es de {{distanciaEntreDomicilios}} Kms. </p>
-    <p>El precio por Kilometro es ${{precioXkilomentro}}, por lo tanto el costo del envio es {{calculo()}}</p>
-    <P>Mas el precio del producto ($ {{precioProducto}} ), nos da un total de ${{total()}} </P>
+    <p>El monto a pagar por el envio es  <strong>${{montoEnvio}}</strong></p>
+    <p>La distancia es de <strong>{{distanciaEntreDomicilios}}</strong>  Kms. </p>
+    <p>El precio por Kilometro es <strong>${{precioXkilomentro}}</strong> , por lo tanto el costo del envio es <strong>{{calculo()}}</strong></p>
+    <P>Mas el precio del producto ($ {{precioProducto}} ), nos da un total de <strong>${{total()}}</strong></P>
     <hr>
 
     <h3>Forma de Pago</h3>
@@ -113,9 +113,9 @@
     </div>
     </form>
     <hr>
-    <div class="navigation row justify-content-between">
-        <button type="button" class="btn btn-primary col-3" (click)="atras()">Atras</button>
-        <button type="button" [disabled]="!validateForms()" class="btn btn-primary col-3" (click)="continuar()">Continuar</button>
+    <div class="navigation  justify-content-center">
+        <button type="button" style="float:left;" class="btn btn-primary col-3" (click)="atras()">Atras</button>
+        <button type="button" style="float:right;" [disabled]="!validateForms()" class="btn btn-primary " (click)="continuar()">Continuar</button>
     </div>
     </form>
        

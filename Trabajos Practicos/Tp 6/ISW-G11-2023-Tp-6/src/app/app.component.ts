@@ -8,6 +8,7 @@ import { Direccion } from './models/Direccion';
 })
 export class AppComponent {
   title = 'ISW-G11-2023-Tp-6';
+
   EstadosPedido = {
     I:'Inicio',
     P: 'Pago',
@@ -17,10 +18,10 @@ export class AppComponent {
   }
 
   estadoPedido = 'I';
-  direccionEntrega = new Direccion();
-  direccionComercio = new Direccion();
   metodoPago = "";
   montoTotal = 0;
   metodoEnvio = "";
+  direccionComercio = new Direccion();
+  direccionEntrega = new Direccion();
 
 }
