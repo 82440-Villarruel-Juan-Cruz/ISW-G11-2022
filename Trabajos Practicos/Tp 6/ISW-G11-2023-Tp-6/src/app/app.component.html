@@ -1,0 +1,27 @@
+
+<div class="container bg-light bg-gradient">
+  <div class="header-plantilla text-light">
+     <img  style="height: 150px;" src="/assets/DeliveryEat.png" alt="alternatetext">
+     <h2 class="font1">Realiza tu Pedido!</h2> 
+  </div>
+
+  <app-pedido (direccionCom)="direccionComercio = $event"  (direccionEnt)="direccionEntrega = $event"   (estado)="estadoPedido = $event"  *ngIf="estadoPedido == 'I'"></app-pedido>
+  <app-forma-de-pago (metodopago)="metodoPago = $event"    (estado)="estadoPedido = $event" *ngIf="estadoPedido == 'P'" >  </app-forma-de-pago>
+  <app-forma-de-envio (metodoenvio)="metodoEnvio = $event"    (estado)="estadoPedido = $event" *ngIf="estadoPedido == 'E'" >  </app-forma-de-envio>
+
+
+  <div class="text-center" *ngIf="estadoPedido == 'F'"  >
+      <h1>TU PEDIDO ESTÁ EN MARCHA</h1>
+      <hr>
+
+      <div class="etiqueta-campo"><h3>Dirección de Comercio</h3></div>
+      <p>{{direccionComercio.Calle}} {{direccionComercio.Numero}}</p>
+      <div class="etiqueta-campo"><h3>Dirección de Entrega</h3></div>
+      <p>{{direccionEntrega.Calle}} {{direccionEntrega.Numero}}</p>
+      <div class="etiqueta-campo"><h3>Forma de pago</h3></div>
+      <p>{{metodoPago}}</p>
+      <div class="etiqueta-campo"><h3>Forma de entrega</h3></div>
+      <p>{{metodoEnvio}}</p>
+  </div>
+
+</div>

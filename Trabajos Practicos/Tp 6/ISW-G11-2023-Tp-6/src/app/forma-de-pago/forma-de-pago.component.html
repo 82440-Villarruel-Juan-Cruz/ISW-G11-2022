@@ -1,0 +1,124 @@
+<div>
+    <p>El monto a pagar por el envio es  ${{montoEnvio}}</p>
+    <p>La distancia es de {{distanciaEntreDomicilios}} Kms. </p>
+    <p>El precio por Kilometro es ${{precioXkilomentro}}, por lo tanto el costo del envio es {{calculo()}}</p>
+    <P>Mas el precio del producto ($ {{precioProducto}} ), nos da un total de ${{total()}} </P>
+    <hr>
+
+    <h3>Forma de Pago</h3>
+    <form class="row g-3 needs-validation" name="FormRegistroPaso" [formGroup]='FormRegistroPaso' novalidate>
+
+    <div class="col-md-12">
+        <select #metodosPago class="form-select" id="inputPayMethod" (change)="onSelected(metodosPago.value)">
+            <option value="" disabled selected>Elija un metodo de pago</option>
+            <option value="0">Efectivo</option>
+            <option value="1">Tarjeta de Debito/Credito</option>
+        </select>  
+    </div>
+    
+    <form class="row g-3 needs-validation" name="FormRegistroPagoEfectivo" [formGroup]='FormRegistroPagoEfectivo' novalidate>
+
+    <div class="col-md-12" name="Efectivo" *ngIf="metodoPago == '0'" >
+        <h4>Monto a abonar</h4>
+        <input type="number" class="form-control"  formControlName="MontoEfectivo" id="inputMoney" [ngClass]="validezCampo('MontoEfectivo',FormRegistroPagoEfectivo)" placeholder="Monto">      
+            <div class="validacion" style="color:red ;" *ngIf="errorDeRequerido('MontoEfectivo',FormRegistroPagoEfectivo)">
+            Dato requerido.
+       
+            </div>
+            <div class="validacion" style="color:red ;" *ngIf="errorMonto('MontoEfectivo',FormRegistroPagoEfectivo) "> 
+                El monto debe ser mayor o igual al total
+            </div>
+    </div>
+    </form>
+
+    <form class="row g-3 needs-validation" name="FormRegistroPagoTarjeta" [formGroup]='FormRegistroPagoTarjeta' novalidate>
+
+    <div class="container" name="Tarjeta" *ngIf="metodoPago == '1'" >
+        <h4>Pago con tarjeta</h4>
+        <div class="row">
+            <div class="col-6">
+                <label for="inputNameOwnerCard" class="form-label">Nombre De titular</label>
+                <input type="text" class="form-control"  formControlName="NombreTitularTarjeta" id="inputNameOwnerCard" [ngClass]="validezCampo('NombreTitularTarjeta',FormRegistroPagoTarjeta)" placeholder="Nombre">
+                
+                <div class="validacion" style="color:red ;" *ngIf="errorDeRequerido('NombreTitularTarjeta',FormRegistroPagoTarjeta)">
+                  Dato requerido.
+                  </div>
+      
+                  <div class="validacion" style="color:red ;" *ngIf="errorDePatron('NombreTitularTarjeta',FormRegistroPagoTarjeta) "> 
+                      Dato texto, 4 a 55 caracteres.
+                  </div>
+              </div>     
+            <div class="col-6">
+                <label for="inputLastNameOwnerCard" class="form-label">Apellido De titular</label>
+                <input type="text" class="form-control"  formControlName="ApellidoTitularTarjeta" id="inputLastNameOwnerCard" [ngClass]="validezCampo('ApellidoTitularTarjeta',FormRegistroPagoTarjeta)" placeholder="Apellido">
+                
+                <div class="validacion" style="color:red ;" *ngIf="errorDeRequerido('ApellidoTitularTarjeta',FormRegistroPagoTarjeta)">
+                  Dato requerido.
+                  </div>
+      
+                  <div class="validacion" style="color:red ;" *ngIf="errorDePatron('ApellidoTitularTarjeta',FormRegistroPagoTarjeta) "> 
+                      Dato texto, 4 a 55 caracteres.
+                  </div>
+              </div>
+        </div>
+        <div class="row">
+
+            <div class="col-md-12">
+            <label for="inputNumberCard" class="form-label">Numero de la Tarjeta</label>
+            <input type="text" class="form-control"  id="NumeroTarjeta" formControlName="NumeroTarjeta" id="inputLastNameOwnerCard" [ngClass]="validezCampo('NumeroTarjeta',FormRegistroPagoTarjeta)" placeholder="Numero ">
+            
+            <div class="validacion" style="color:red ;" *ngIf="errorDeRequerido('NumeroTarjeta',FormRegistroPagoTarjeta)">
+                Dato requerido.
+                </div>
+    
+                <div class="validacion" style="color:red ;" *ngIf="errorDePatron('NumeroTarjeta',FormRegistroPagoTarjeta) "> 
+                   La tarjeta debe tener 16 caracteres
+                </div>
+                <div class="validacion" style="color:red ;" *ngIf="errorNumeroTarjeta('NumeroTarjeta',FormRegistroPagoTarjeta) "> 
+                    El numero de tarjeta provisto es incorrecto o corresponde a una Tarjeta Mastercard
+                 </div>
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col-6">
+                <label for="inputDateExpirationCard" class="form-label">Fecha Vencimiento</label>
+                <input type="text" class="form-control"  formControlName="FechaVencimientoTarjeta" id="inputDateExpirationCard" [ngClass]="validezCampo('FechaVencimientoTarjeta',FormRegistroPagoTarjeta)" placeholder="MM/yy ">
+                
+                <div class="validacion" style="color:red ;" *ngIf="errorDeRequerido('FechaVencimientoTarjeta',FormRegistroPagoTarjeta)">
+                    Dato requerido.
+                    </div>
+        
+                    <div class="validacion" style="color:red ;" *ngIf="errorDePatron('FechaVencimientoTarjeta',FormRegistroPagoTarjeta) "> 
+                        Formato mm/yy
+                    </div>
+                </div>
+    
+            <div class="col-3">
+                <label for="inputCCVCard" class="form-label">CCV</label>
+                <input type="text" class="form-control"  formControlName="CCV" id="inputCCVCard" [ngClass]="validezCampo('CCV',FormRegistroPagoTarjeta)" placeholder="000">
+                
+                <div class="validacion" style="color:red ;" *ngIf="errorDeRequerido('CCV',FormRegistroPagoTarjeta)">
+                    Dato requerido.
+                    </div>
+        
+                    <div class="validacion" style="color:red ;" *ngIf="errorDePatron('CCV',FormRegistroPagoTarjeta) "> 
+                        Dato Numero, de 3 caracteres.
+                    </div>
+                </div>   
+        </div>
+
+        
+
+    </div>
+    </form>
+    <hr>
+    <div class="navigation row justify-content-between">
+        <button type="button" class="btn btn-primary col-3" (click)="atras()">Atras</button>
+        <button type="button" [disabled]="!validateForms()" class="btn btn-primary col-3" (click)="continuar()">Continuar</button>
+    </div>
+    </form>
+       
+        
+
+</div>

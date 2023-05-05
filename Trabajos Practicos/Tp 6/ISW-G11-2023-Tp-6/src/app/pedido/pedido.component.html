@@ -1,0 +1,104 @@
+
+<div class="container">
+    <h3> Pedido a Cadete ? </h3>
+    <form class="row g-3 needs-validation" name="FormPedido" [formGroup]='FormRegistroPedido' novalidate>
+        <div class="col-md-12">
+            <label for="inputDescription" class="form-label" for="descripcion">Que va a buscar el cadete?</label>
+            <textarea type="text" class="form-control" [ngClass]="validezCampo('Descripcion')"  required
+            formControlName="Descripcion" id="inputDescription" rows="3" placeholder="Descripcion" style="resize: none" ></textarea>
+            
+            <div class="validacion" style="color:red ;" *ngIf="errorDeRequerido('Descripcion')">
+                Dato requerido.
+                </div>
+
+                <div class="validacion"  style="color:red ;" *ngIf="errorDePatron('Descripcion') "> 
+                    Dato texto, 4 a 55 caracteres.
+                </div>
+          </div>
+     
+        <div class="mb-3">
+            <label for="formFile" class="form-label">Foto (Opcional)</label>
+            <input class="form-control" type="file" id="formFile" accept="image/png, image/gif, image/jpeg" (change)= "validateSize()">
+        </div>
+        <h4>Direccion de Comercio</h4>
+        <div class="col-6">
+          <label for="inputAddressCommerceStreet" class="form-label">Calle</label>
+          <input type="text" class="form-control"  formControlName="CalleComercio" id="inputAddressCommerceStreet" [ngClass]="validezCampo('CalleComercio')" placeholder="Colon">
+          
+          <div class="validacion" style="color:red ;" *ngIf="errorDeRequerido('CalleComercio')">
+            Dato requerido.
+            </div>
+
+            <div class="validacion" style="color:red ;" *ngIf="errorDePatron('CalleComercio') "> 
+                Dato texto, 4 a 55 caracteres.
+            </div>
+        </div>
+        <div class="col-6">
+            <label for="inputAddressCommerceNumber" class="form-label">Número</label>
+            <input type="text" class="form-control"   formControlName="NumeroComercio" id="inputAddressCommerceNumber" [ngClass]="validezCampo('NumeroComercio')" placeholder="1500">
+            <div class="validacion" style="color:red ;" *ngIf="errorDeRequerido('NumeroComercio')">
+                Dato requerido.
+                </div>
+    
+                <div class="validacion" style="color:red ;" *ngIf="errorDePatron('NumeroComercio') "> 
+                    Dato texto, 4 a 55 caracteres.
+                </div>
+          </div>
+        <div class="col-md-12">
+          <label for="inputCommerceCity" class="form-label">Ciudad</label>
+          <select class="form-select" id="inputCommerceCity">
+            <option selected value="0">Cordoba Capital</option>
+            <option value="1">Carlos Paz</option>
+            <option value="2">Alta Gracia</option>
+          </select>        
+        </div>
+        <div class="col-md-12">
+            <label for="inputCommerceReference" class="form-label">Referencia</label>
+            <textarea type="text" class="form-control" id="inputCommerceReference" rows="3" placeholder="Referencia" style="resize: none"  ></textarea>
+        </div>
+        <h4>Direccion de Entrega</h4>
+        <div class="col-6">
+          <label for="inputAddressDeliveryStreet" class="form-label">Calle</label>
+          <input type="text" class="form-control"  formControlName="CalleEntrega" id="inputAddressDeliveryStreet" [ngClass]="validezCampo('CalleEntrega')" placeholder="Colon">
+          
+          <div class="validacion" style="color:red ;" *ngIf="errorDeRequerido('CalleEntrega')">
+            Dato requerido.
+            </div>
+
+            <div class="validacion" style="color:red ;" *ngIf="errorDePatron('CalleEntrega') "> 
+                Dato texto, 4 a 55 caracteres.
+            </div>
+        </div>
+        <div class="col-6">
+            <label for="inputAddressDeliveryNumber" class="form-label">Número</label>
+            <input type="text" class="form-control"  formControlName="NumeroEntrega" id="inputAddressDeliveryNumber" [ngClass]="validezCampo('NumeroEntrega')" placeholder="1500">
+            <div class="validacion" style="color:red ;" *ngIf="errorDeRequerido('NumeroEntrega')">
+                Dato requerido.
+                </div>
+    
+                <div class="validacion" style="color:red ;" *ngIf="errorDePatron('NumeroEntrega') "> 
+                    Dato texto, 4 a 55 caracteres.
+                </div>
+          </div>
+        <div class="col-md-12">
+          <label for="inputDeliveryCity" class="form-label">Ciudad</label>
+          <select class="form-select" id="inputDeliveryCity">
+            <option selected value="0">Cordoba Capital</option>
+            <option value="1">Carlos Paz</option>
+            <option value="2">Alta Gracia</option>
+          </select>        
+        </div>
+        <div class="col-md-12">
+            <label for="inputDeliveryReference" class="form-label">Referencia</label>
+            <textarea  type="text" class="form-control" id="inputDeliveryReference" rows="3" placeholder="Referencia" style="resize: none"  ></textarea>
+        </div>
+
+        <div class="navigation row justify-content-end">
+            <button type="button" [disabled]="FormRegistroPedido.invalid" class="btn btn-primary col-3" (click)="continuar()">Continuar</button>
+        </div>
+        
+
+          
+
+      </form>
+</div>

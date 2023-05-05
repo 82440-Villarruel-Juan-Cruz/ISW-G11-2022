@@ -1,0 +1,46 @@
+<h3> Forma de Envio</h3>
+
+<div name="FormasDeEnvio" class="dive" >
+    <select #formaEnvio class="form-select" id="inputMailMethod" (change)="onSelected2(formaEnvio.value)">
+        <option value="" disabled selected>Elija un metodo de pago</option>
+        <option value="0">Lo Antes Posible</option>
+        <option value="1">Fecha Y Hora Especifica</option>
+      </select>  
+</div>
+
+<form class="row g-3 needs-validation" name="FormRegistroEnvioHorario" [formGroup]='FormRegistroEnvioHorario' novalidate>
+
+<div name="FormaEnvio" *ngIf="formaEnvio.value == '1'">
+    <h4>Introduzca una fecha y hora</h4>
+    <div class="row">
+    <div class="col-6">
+
+        <label for="inputdate" class="form-label">Fecha</label>
+        <input type="text" class="form-control"  formControlName="FechaRecepcion" id="inputdate" [ngClass]="validezCampo('FechaRecepcion',FormRegistroEnvioHorario)" placeholder="dd/MM/yyyy">
+        <div class="validacion" style="color:red ;" *ngIf="errorDeRequerido('FechaRecepcion',FormRegistroEnvioHorario)">
+            Dato requerido.
+            </div>
+            <div class="validacion" style="color:red ;" *ngIf="errorDePatron('FechaRecepcion',FormRegistroEnvioHorario) "> 
+                Dato Numero, de 3 caracteres.
+            </div>  
+    </div>
+    <div class="col-6">
+    <label for="inputhour" class="form-label">Hora</label>
+    <input type="text" class="form-control"  formControlName="HoraRecepcion" id="inputhour" [ngClass]="validezCampo('HoraRecepcion',FormRegistroEnvioHorario)" placeholder="hh:mm">
+    <div class="validacion" style="color:red ;" *ngIf="errorDeRequerido('HoraRecepcion',FormRegistroEnvioHorario)">
+        Dato requerido.
+        </div>
+        <div class="validacion" style="color:red ;" *ngIf="errorDePatron('HoraRecepcion',FormRegistroEnvioHorario) "> 
+            Dato Numero, de 3 caracteres.
+        </div>
+    </div>
+</div>
+</div>
+<hr>
+<div class="navigation row justify-content-between">
+    <button type="button" class="btn btn-primary col-3" (click)="atras()">Atras</button>
+    <button type="button" [disabled]="FormRegistroEnvioHorario.invalid" class="btn btn-primary col-3" (click)="continuar()">Continuar</button>
+</div>
+</form> 
+
+
