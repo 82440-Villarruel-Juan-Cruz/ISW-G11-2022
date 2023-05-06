@@ -2,7 +2,7 @@
 <div class="container bg-light bg-gradient">
   <div class="header-plantilla text-light">
      <img  style="height: 150px;" src="/assets/DeliveryEat.png" alt="alternatetext">
-     <h2 class="font1">Realiza tu Pedido!</h2> 
+     <h2 class="font1">Realiza tu Pedido! <strong> Lo que sea !</strong></h2> 
   </div>
 
   <app-pedido (direccionCom)="direccionComercio = $event"  (direccionEnt)="direccionEntrega = $event"   (estado)="estadoPedido = $event"  *ngIf="estadoPedido == 'I'"></app-pedido>
@@ -15,13 +15,15 @@
       <hr>
 
       <div class="etiqueta-campo"><h3>Dirección de Comercio</h3></div>
-      <p>{{direccionComercio.Calle}} {{direccionComercio.Numero}}</p>
+      <p>{{direccionComercio.Calle}} {{direccionComercio.Numero}} , {{direccionComercio.Ciudad}}</p>
       <div class="etiqueta-campo"><h3>Dirección de Entrega</h3></div>
-      <p>{{direccionEntrega.Calle}} {{direccionEntrega.Numero}}</p>
+      <p>{{direccionEntrega.Calle}} {{direccionEntrega.Numero}} , {{direccionComercio.Ciudad}}</p>
       <div class="etiqueta-campo"><h3>Forma de pago</h3></div>
       <p>{{metodoPago}}</p>
       <div class="etiqueta-campo"><h3>Forma de entrega</h3></div>
       <p>{{metodoEnvio}}</p>
+
+      
   </div>
 
 </div>

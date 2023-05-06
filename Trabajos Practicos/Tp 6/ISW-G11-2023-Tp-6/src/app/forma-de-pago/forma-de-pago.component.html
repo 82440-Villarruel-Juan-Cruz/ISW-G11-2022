@@ -65,7 +65,7 @@
 
             <div class="col-md-12">
             <label for="inputNumberCard" class="form-label">Numero de la Tarjeta</label>
-            <input type="text" class="form-control"  id="NumeroTarjeta" formControlName="NumeroTarjeta" id="inputLastNameOwnerCard" [ngClass]="validezCampo('NumeroTarjeta',FormRegistroPagoTarjeta)" placeholder="Numero ">
+            <input type="text" class="form-control"  id="NumeroTarjeta" formControlName="NumeroTarjeta" id="inputLastNameOwnerCard" [ngClass]="validezCampo('NumeroTarjeta',FormRegistroPagoTarjeta)"  (change) ="validateCredibCard($event)"  placeholder="Numero ">
             
             <div class="validacion" style="color:red ;" *ngIf="errorDeRequerido('NumeroTarjeta',FormRegistroPagoTarjeta)">
                 Dato requerido.

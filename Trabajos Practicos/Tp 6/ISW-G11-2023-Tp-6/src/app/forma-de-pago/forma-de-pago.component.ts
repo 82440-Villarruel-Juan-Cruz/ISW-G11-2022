@@ -18,6 +18,7 @@ export class FormaDePagoComponent implements OnInit {
 
   metodoPago = "";
   submitted = false;
+  tarjetaValidada = false ;
   montoEnvio = 100.00;
   distanciaEntreDomicilios = 20;
   precioXkilomentro = 5;
@@ -111,16 +112,28 @@ export class FormaDePagoComponent implements OnInit {
   }
 
   errorNumeroTarjeta(campo:string,form:FormGroup){
-    console.log(campo)
     if( (this.FormRegistroPagoTarjeta.controls[campo].touched || this.submitted)
           && !this.fValidarTarjeta(this.FormRegistroPagoTarjeta.controls[campo].value))
-          {             
+          {           
+
+            this.tarjetaValidada  = false;
             return true;       
 
           }else{
+            this.tarjetaValidada = true;
             return false;
           }
 
+  }
+
+  validateCredibCard(event:any):void{
+    if(!this.tarjetaValidada){
+      event.currentTarget.classList.add('is-invalid')
+
+    }else{
+      event.currentTarget.classList.remove('is-invalid')
+
+    }
   }
 
   fValidarTarjeta(numero:string) {
@@ -165,7 +178,7 @@ validateForms(){
         variable =  true
         break;
       case "1":
-        if(this.FormRegistroPagoTarjeta.valid) 
+        if(this.FormRegistroPagoTarjeta.valid && this.tarjetaValidada ) 
         variable =  true
         break;
     }

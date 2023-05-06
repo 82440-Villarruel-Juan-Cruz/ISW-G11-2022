@@ -12,6 +12,7 @@ export class FormaDeEnvioComponent implements OnInit {
   habilitar = false;
   formaEnvio = "";
   submitted = false;
+  fechaHoy = Date.now()
 
   constructor( private formBuilder: FormBuilder) { }
 
@@ -55,7 +56,27 @@ export class FormaDeEnvioComponent implements OnInit {
 
     else return false;
   }
+
+  errorDia(campo:string,form:FormGroup){
+    if( (this.FormRegistroEnvioHorario.controls[campo].touched || this.submitted)
+          && !this.validarDia(this.FormRegistroEnvioHorario.controls[campo].value))
+          {   
+            return true;}
+    else{
+      return false;
+    }
+  }
     
+  validarDia(fecha:string){
+    console.log("a");
+    var varibable = false;
+    var fechaInput = (new Date(parseInt(fecha.substring(6,9)),parseInt(fecha.substring(3,4)),parseInt(fecha.substring(0,1)))).getMilliseconds();
+    if(fechaInput == this.fechaHoy){
+
+    }
+    return varibable
+  }
+
   estadoForm()
   {
     if(this.formaEnvio == '0')return false;
