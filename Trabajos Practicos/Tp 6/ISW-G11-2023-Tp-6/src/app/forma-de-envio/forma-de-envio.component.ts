@@ -12,7 +12,15 @@ export class FormaDeEnvioComponent implements OnInit {
   habilitar = false;
   formaEnvio = "";
   submitted = false;
-  fechaHoy = Date.now()
+  fechaHoy = new Date();
+
+  getDate(weeks : number){
+    var offset = this.fechaHoy.getTimezoneOffset()
+    var fechareturn = new Date(this.fechaHoy.getTime() + (604800000 * weeks) - (offset*60*1000))
+    return fechareturn.getMilliseconds()
+  }
+
+  
 
   constructor( private formBuilder: FormBuilder) { }
 
@@ -58,21 +66,43 @@ export class FormaDeEnvioComponent implements OnInit {
   }
 
   errorDia(campo:string,form:FormGroup){
+    console.log("a")
+
     if( (this.FormRegistroEnvioHorario.controls[campo].touched || this.submitted)
           && !this.validarDia(this.FormRegistroEnvioHorario.controls[campo].value))
           {   
+            console.log("a")
             return true;}
     else{
       return false;
     }
   }
     
-  validarDia(fecha:string){
-    console.log("a");
-    var varibable = false;
-    var fechaInput = (new Date(parseInt(fecha.substring(6,9)),parseInt(fecha.substring(3,4)),parseInt(fecha.substring(0,1)))).getMilliseconds();
-    if(fechaInput == this.fechaHoy){
+  errorHora(campo:string,form:FormGroup){
 
+    if( (this.FormRegistroEnvioHorario.controls[campo].touched || this.submitted)
+          && !this.validarHora(this.FormRegistroEnvioHorario.controls[campo].value))
+          {   
+            return true;
+          }
+    else{
+      return false;
+    }
+  }
+
+  validarHora(horario:string){
+    const [hora,minutos] = horario.split(':');
+    if(parseInt(hora) < 23 && parseInt(hora) > 8 )return true;
+    else return false;
+    
+  }
+
+  validarDia(fecha:string){
+    var varibable = false;
+    const [day, month, year] = fecha.split('/');
+    const date = new Date(+year, parseInt(month) - 1, +day);
+    if(date.getMilliseconds() > this.getDate(-1) && date.getMilliseconds() < this.getDate(1) ){
+      varibable = true; 
     }
     return varibable
   }

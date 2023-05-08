@@ -32,7 +32,7 @@ export class PedidoComponent implements OnInit {
       NumeroComercio: new FormControl(null,
         [Validators.required,
           Validators.pattern('[0-9]{1,5}')]),
-      CiudadComercio: new FormControl(true, [Validators.required]),
+      CiudadComercio: new FormControl(null, [Validators.required]),
       ReferenciaComercio: new FormControl('', [Validators.pattern('[A-Z, a-z, 0-9]{1,100}')]),
       CalleEntrega: new FormControl('', 
       [Validators.required, 
@@ -40,7 +40,7 @@ export class PedidoComponent implements OnInit {
     NumeroEntrega: new FormControl(null,
       [Validators.required,
         Validators.pattern('[0-9]{1,5}')]),
-    CiudadEntrega: new FormControl(true, [Validators.required]),
+    CiudadEntrega: new FormControl(null, [Validators.required]),
     ReferenciaEntrega: new FormControl('', [Validators.pattern('[A-Z, a-z, 0-9]{1,100}')]),
     });
   }
@@ -103,6 +103,22 @@ export class PedidoComponent implements OnInit {
       event.currentTarget.classList.remove('is-invalid')
 
     }
+  }
+
+  errorSameCity(){
+     if(  (this.FormRegistroPedido.controls["CiudadEntrega"].touched || this.FormRegistroPedido.controls["CiudadComercio"].touched) &&   
+           (this.FormRegistroPedido.controls["CiudadEntrega"].value != this.FormRegistroPedido.controls["CiudadComercio"].value) &&
+           (this.FormRegistroPedido.controls["CiudadEntrega"].value != "") && this.FormRegistroPedido.controls["CiudadComercio"].value != ""){
+
+             document.getElementById("inputCommerceCity")?.classList.add('is-invalid')     
+             document.getElementById("inputDeliveryCity")?.classList.add('is-invalid') 
+             return true;
+            }
+
+    else {
+      document.getElementById("inputCommerceCity")?.classList.remove('is-invalid')     
+      document.getElementById("inputDeliveryCity")?.classList.remove('is-invalid')     
+      return false;}
   }
   
   validateForm(){

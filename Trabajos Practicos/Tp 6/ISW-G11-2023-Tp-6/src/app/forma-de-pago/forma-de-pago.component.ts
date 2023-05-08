@@ -66,7 +66,7 @@ export class FormaDePagoComponent implements OnInit {
     })
     
     this.FormRegistroPagoEfectivo = this.formBuilder.group({
-      MontoEfectivo:new FormControl(null, [Validators.required, Validators.min(this.total())]),
+      MontoEfectivo:new FormControl(null, [Validators.required,Validators.max(30000), Validators.min(this.total())], ),
     })
 
 
@@ -105,7 +105,8 @@ export class FormaDePagoComponent implements OnInit {
 
   errorMonto(campo:string,form:FormGroup){
     if( (form.controls[campo].touched || this.submitted)
-          && form.controls[campo].hasError('min'))
+          && (form.controls[campo].hasError('min') || form.controls[campo].hasError('max')) )
+
     return true;
 
     else return false;

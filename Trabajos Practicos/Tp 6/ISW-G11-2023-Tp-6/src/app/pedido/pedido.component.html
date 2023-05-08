@@ -49,11 +49,17 @@
           </div>
         <div class="col-md-12">
           <label for="inputCommerceCity" class="form-label">Ciudad</label>
-          <select class="form-select" id="inputCommerceCity">
-            <option selected value="0">Cordoba Capital</option>
-            <option value="1">Carlos Paz</option>
-            <option value="2">Alta Gracia</option>
-          </select>        
+          <select class="form-select" [ngClass]="validezCampo('CiudadComercio')"  formControlName = "CiudadComercio" id="inputCommerceCity">
+            <option selected value="Cordoba_Capital">Cordoba Capital</option>
+            <option value="Carloz_Paz">Carlos Paz</option>
+            <option value="Alta_Gracia">Alta Gracia</option>
+          </select>       
+          <div class="validacion" style="color:red ;" *ngIf="errorSameCity()">
+            La ciudad de Entrega y la de Delivery no pueden ser distintas.
+            </div> 
+            <div class="validacion" style="color:red ;" *ngIf="errorDeRequerido('CiudadComercio')">
+              Dato requerido.
+              </div>
         </div>
         <div class="col-md-12">
             <label for="inputCommerceReference" class="form-label">Referencia</label>
@@ -85,11 +91,17 @@
           </div>
         <div class="col-md-12">
           <label for="inputDeliveryCity" class="form-label">Ciudad</label>
-          <select class="form-select" id="inputDeliveryCity">
-            <option selected value="0">Cordoba Capital</option>
-            <option value="1">Carlos Paz</option>
-            <option value="2">Alta Gracia</option>
+          <select class="form-select" formControlName = "CiudadEntrega"  [ngClass]="validezCampo('CiudadEntrega')"  id="inputDeliveryCity">
+            <option selected value="Cordoba_Capital">Cordoba Capital</option>
+            <option value="Carloz_Paz">Carlos Paz</option>
+            <option value="Alta_Gracia">Alta Gracia</option>
           </select>        
+          <div class="validacion" style="color:red ;" *ngIf="errorSameCity()">
+            La ciudad de Entrega y la de Delivery no pueden ser distintsa.
+            </div>
+            <div class="validacion" style="color:red ;" *ngIf="errorDeRequerido('CiudadEntrega')">
+              Dato requerido.
+              </div>
         </div>
         <div class="col-md-12">
             <label for="inputDeliveryReference" class="form-label">Referencia</label>

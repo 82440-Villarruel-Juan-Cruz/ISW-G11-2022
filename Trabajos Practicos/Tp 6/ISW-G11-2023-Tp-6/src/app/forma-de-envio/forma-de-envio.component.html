@@ -23,6 +23,11 @@
             <div class="validacion" style="color:red ;" *ngIf="errorDePatron('FechaRecepcion',FormRegistroEnvioHorario) "> 
                 Dato Numero, de 3 caracteres.
             </div>  
+
+            <div class="validacion" style="color:red ;" *ngIf="errorDia('FechaRecepcion',FormRegistroEnvioHorario) "> 
+                La fecha debe ser entre una semana antes o despues de Hoy.
+            </div>  
+
             
     </div>
     <div class="col-6">
@@ -33,6 +38,9 @@
         </div>
         <div class="validacion" style="color:red ;" *ngIf="errorDePatron('HoraRecepcion',FormRegistroEnvioHorario) "> 
             Dato Numero, de 3 caracteres.
+        </div>
+        <div class="validacion" style="color:red ;" *ngIf="errorHora('HoraRecepcion',FormRegistroEnvioHorario) "> 
+            Debe ser entre las 8:00 y 23:00.
         </div>
     </div>
 </div>
